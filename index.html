@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash Art Commissions</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            // 🔴 REPLACE WITH YOUR EMAILJS PUBLIC KEY
+            emailjs.init("kmAiKzR64va6vvC");
+        })();
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Gochi+Hand&display=swap');
+        
+        :root {
+            --lavender: #e6e6fa;
+            --soft-purple: #d8bfd8;
+            --dark-purple: #4a4a6a;
+            --accent-pink: #ff9ecd;
+            --cream: #fff5f7;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #f5f0ff 0%, #e6e6fa 50%, #f0e6ff 100%);
+            color: var(--dark-purple);
+            line-height: 1.5;
+            min-height: 100vh;
+            letter-spacing: 1px;
+        }
+
+        .banner {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #ffeef5 0%, #e6e6fa 100%);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid rgba(255,255,255,0.8);
+        }
+
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* VISITOR COUNTER - TOP RIGHT */
+        .visitor-counter {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(255,255,255,0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.9rem;
+            border: 2px solid var(--accent-pink);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .visitor-counter svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-pink);
+        }
+
+        .visitor-count {
+            font-weight: bold;
+            color: var(--dark-purple);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+        }
+
+        .rotating-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px dashed var(--accent-pink);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .avatar-static {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            background: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-static img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-info { flex: 1; }
+
+        .profile-name {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 5rem;
+            font-weight: 400;
+            color: var(--dark-purple);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            transform: rotate(-1deg);
+            display: inline-block;
+        }
+
+        .tagline {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.3rem;
+            color: var(--dark-purple);
+            opacity: 0.9;
+            letter-spacing: 2px;
+            margin-left: 5px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            padding-bottom: 1rem;
+        }
+
+        .nav-tab {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.6rem;
+            color: var(--dark-purple);
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: all 0.3s;
+            transform: rotate(-1deg);
+        }
+
+        .nav-tab:hover {
+            color: var(--accent-pink);
+            transform: rotate(1deg) translateY(-2px);
+        }
+
+        .nav-tab.active {
+            color: var(--accent-pink);
+            transform: rotate(-2deg);
+        }
+
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 15%;
+            right: 15%;
+            height: 3px;
+            background: var(--accent-pink);
+            border-radius: 2px;
+            transform: rotate(1deg);
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .content-section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .about-content {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+            color: var(--dark-purple);
+            letter-spacing: 1.5px;
+            transform: rotate(-0.5deg);
+        }
+
+        .social-section {
+            margin-top: 2rem;
+            transform: rotate(0.5deg);
+        }
+
+        .social-title {
+            font-family: 'Patrick Hand', cursive;
+            font-weight: 400;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark-purple);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .social-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            transform: rotate(-0.5deg);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--dark-purple);
+        }
+
+        .social-item:hover {
+            transform: rotate(-0.5deg) translateX(5px);
+            color: var(--accent-pink);
+        }
+
+        .social-item:hover .social-icon {
+            border-color: var(--accent-pink);
+            color: var(--accent-pink);
+        }
+
+        .social-item:nth-child(even) {
+            transform: rotate(0.5deg);
+        }
+
+        .social-item:nth-child(even):hover {
+            transform: rotate(0.5deg) translateX(5px);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--dark-purple);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-family: 'Patrick Hand', cursive;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .social-link-text {
+            border-bottom: 2px solid var(--dark-purple);
+            padding-bottom: 2px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .social-item:hover .social-link-text {
+            border-bottom-color: var(--accent-pink);
+        }
+
+        .prices-layout {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .character-container {
+            position: relative;
+            flex: 0 0 300px;
+        }
+
+        .vertical-label {
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: rotate(-90deg) translateX(-50%);
+            transform-origin: left center;
+            font-family: 'Patrick Hand', cursive;
+            font-weight: 400;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            color: var(--dark-purple);
+            text-transform: uppercase;
+        }
+
+        .character-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .price-chart { flex: 1; }
+
+        .chart-title {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            transform: rotate(-1deg);
+        }
+
+        .chart-headers {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-family: 'Patrick Hand', cursive;
+            font-weight: 400;
+            font-size: 1.4rem;
+            padding: 0 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            margin-bottom: 0.5rem;
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            transform: rotate(-0.5deg);
+        }
+
+        .price-row:nth-child(even) { transform: rotate(0.5deg); }
+
+        .price-type {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .price-amount {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--dark-purple);
+            letter-spacing: 2px;
+        }
+
+        .gallery-title {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 3rem;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            transform: rotate(-1deg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .gallery-column h3 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
+            transform: rotate(-1deg);
+        }
+
+        .gallery-column:nth-child(2) h3 { transform: rotate(1deg); }
+
+        .art-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .art-item {
+            position: relative;
+            aspect-ratio: 1;
+            background: rgba(255,255,255,0.6);
+            border: 2px solid rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            transform: rotate(-1deg);
+            transition: transform 0.3s;
+        }
+
+        .art-item:nth-child(even) { transform: rotate(1deg); }
+
+        .art-item:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .art-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* LIKE BUTTON */
+        .like-btn {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--accent-pink);
+            border-radius: 15px;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            cursor: pointer;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.8rem;
+            color: var(--dark-purple);
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            z-index: 10;
+            letter-spacing: 0.5px;
+            min-width: 40px;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .like-btn:hover:not(:disabled) {
+            transform: scale(1.1);
+            background: var(--accent-pink);
+            color: white;
+        }
+
+        .like-btn.liked {
+            background: #ff4757;
+            border-color: #ff4757;
+            color: white;
+        }
+
+        .like-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .heart-icon {
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .like-btn:active:not(:disabled) .heart-icon {
+            transform: scale(1.3);
+        }
+
+        .like-count {
+            font-weight: bold;
+            min-width: 12px;
+            text-align: center;
+            font-family: 'Gochi Hand', cursive;
+            font-size: 0.85rem;
+        }
+
+        .sync-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 2px solid var(--accent-pink);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 100;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .sync-indicator.show { opacity: 1; }
+        .sync-indicator.error { border-color: #ff4757; color: #ff4757; }
+
+        /* TOS STYLES */
+        .tos-title {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            transform: rotate(-1deg);
+        }
+
+        .tos-content {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            letter-spacing: 1.5px;
+            background: rgba(255,255,255,0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+
+        .tos-intro {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.3rem;
+            color: var(--dark-purple);
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+            transform: rotate(-0.5deg);
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            padding-bottom: 1rem;
+        }
+
+        .tos-content em {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.2rem;
+            color: var(--accent-pink);
+            font-style: normal;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .tos-content p strong {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.4rem;
+            color: var(--dark-purple);
+            display: block;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .tos-content p {
+            margin-bottom: 1.5rem;
+            transform: rotate(-0.3deg);
+        }
+
+        .tos-content p:nth-child(even) { transform: rotate(0.3deg); }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+                margin-top: -30px;
+            }
+
+            .profile-name {
+                font-size: 3.5rem;
+                letter-spacing: 2px;
+            }
+
+            .nav-tabs {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .nav-tab {
+                font-size: 1.3rem;
+                letter-spacing: 2px;
+            }
+
+            .prices-layout { flex-direction: column; }
+
+            .character-container {
+                flex: none;
+                width: 200px;
+            }
+
+            .vertical-label { display: none; }
+
+            .gallery-grid { grid-template-columns: 1fr; }
+
+            body { font-size: 1.2rem; }
+
+            .like-btn {
+                font-size: 0.75rem;
+                padding: 3px 6px;
+                min-width: 35px;
+            }
+
+            .tos-content { font-size: 1.2rem; }
+            .tos-content p strong { font-size: 1.2rem; }
+            
+            .social-item {
+                font-size: 1.3rem;
+            }
+            
+            .visitor-counter {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- VISITOR COUNTER -->
+    <div class="visitor-counter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        <span>Visitors: <span id="visitorCount" class="visitor-count">0</span></span>
+    </div>
+
+    <div id="syncIndicator" class="sync-indicator">Syncing...</div>
+
+    <!-- Top Banner -->
+    <div class="banner">
+        <img src="images/banner.png" alt="Banner" onerror="this.style.display='none'">
+    </div>
+
+    <div class="container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="logo-container">
+                <div class="rotating-ring"></div>
+                <div class="avatar-static">
+                    <img src="images/avatar.png" alt="Dash">
+                </div>
+            </div>
+
+            <div class="profile-info">
+                <h1 class="profile-name">dash</h1>
+                <p class="tagline">you wont know what i can do unless you try me</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('about', this)">About</button>
+            <button class="nav-tab" onclick="showTab('gallery', this)">Gallery</button>
+            <button class="nav-tab" onclick="showTab('prices', this)">Prices</button>
+            <button class="nav-tab" onclick="showTab('tos', this)">T.O.S</button>
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="content-section active">
+            <div class="about-content">
+                <p class="about-text">
+                    i'm here to help you cross the finish line in your character designs. 
+                    i believe every characters deserve to look their best
+                </p>
+
+                <div class="social-section">
+                    <div class="social-title">DASH . with me :</div>
+                    <div class="social-list">
+                        <a href="https://www.instagram.com/just_dash_comms?igsh=MWVnMnFpeGM5d3h5Zw==" target="_blank" class="social-item">
+                            <div class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </div>
+                            <span class="social-link-text">instagram</span>
+                        </a>
+                        
+                        <a href="https://vgen.co/lets_dash" target="_blank" class="social-item">
+                            <div class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 22h6l4-8 4 8h6L12 2z"></path>
+                                </svg>
+                            </div>
+                            <span class="social-link-text">vgen</span>
+                        </a>
+                        
+                        <a href="https://discord.gg/HVk9MJNA" target="_blank" class="social-item">
+                            <div class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                </svg>
+                            </div>
+                            <span class="social-link-text">discord</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION -->
+        <section id="gallery" class="content-section">
+            <h2 class="gallery-title">Gallery</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-column">
+                    <h3>Bust-Ups</h3>
+                    <div class="art-grid">
+                        <div class="art-item">
+                            <img src="images/bustup-1.png" alt="Bust Up 1">
+                            <button class="like-btn" onclick="toggleLike(this, 'bustup1')" data-id="bustup1">
+                                <span class="heart-icon">♡</span>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                        <div class="art-item">
+                            <img src="images/bustup-2.png" alt="Bust Up 2">
+                            <button class="like-btn" onclick="toggleLike(this, 'bustup2')" data-id="bustup2">
+                                <span class="heart-icon">♡</span>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                        <div class="art-item">
+                            <img src="images/bustup-3.png" alt="Bust Up 3">
+                            <button class="like-btn" onclick="toggleLike(this, 'bustup3')" data-id="bustup3">
+                                <span class="heart-icon">♡</span>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-column">
+                    <h3>Half Body</h3>
+                    <div class="art-grid">
+                        <div class="art-item">
+                            <img src="images/waistup-1.png" alt="Waist Up 1">
+                            <button class="like-btn" onclick="toggleLike(this, 'waistup1')" data-id="waistup1">
+                                <span class="heart-icon">♡</span>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                        <div class="art-item">
+                            <img src="images/waistup-2.png" alt="Waist Up 2">
+                            <button class="like-btn" onclick="toggleLike(this, 'waistup2')" data-id="waistup2">
+                                <span class="heart-icon">♡</span>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                        <div class="art-item">
+                            <img src="images/waistup-3.png" alt="Waist Up 3">
+                            <button class="like-btn" onclick="toggleLike(this, 'waistup3')" data-id="waistup3">
+                                <span class="heart-icon">♡</span>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-column">
+                    <h3>Full Body</h3>
+                    <div class="art-grid">
+                        <div class="art-item">
+                            <img src="images/fullbody-1.png" alt="Full Body 1">
+                            <button class="like-btn" onclick="toggleLike(this, 'fullbody1')" data-id="fullbody1">
+                                <span class="heart-icon">♡</span>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                        <div class="art-item">
+                            <img src="images/fullbody-2.png" alt="Full Body 2">
+                            <button class="like-btn" onclick="toggleLike(this, 'fullbody2')" data-id="fullbody2">
+                                <span class="heart-icon">♡</span>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                        <div class="art-item">
+                            <img src="images/fullbody-3.png" alt="Full Body 3">
+                            <button class="like-btn" onclick="toggleLike(this, 'fullbody3')" data-id="fullbody3">
+                                <span class="heart-icon">♡</span>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICES SECTION -->
+        <section id="prices" class="content-section">
+            <div class="prices-layout">
+                <div class="character-container">
+                    <div class="vertical-label">Character</div>
+                    <img src="images/character.png" alt="Character" class="character-img" 
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 400%22><text y=%22200%22 font-size=%22100%22>🎨</text></svg>'">
+                </div>
+
+                <div class="price-chart">
+                    <h2 class="chart-title">Commission Prices</h2>
+                    
+                    <div class="chart-headers">
+                        <span>Type</span>
+                        <span>Price</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="price-type">Bust-Up</span>
+                        <span class="price-amount">$10</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="price-type">Half Body</span>
+                        <span class="price-amount">$20</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="price-type">Full Body</span>
+                        <span class="price-amount">$35</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tos" class="content-section">
+            <h2 class="tos-title">Terms of Service</h2>
+            <div class="tos-content">
+                <p class="tos-intro">By commissioning me, you agree to the following terms:</p>
+                
+                <p><strong>1. Payment & Process</strong><br>
+                <em>Full Payment Upfront:</em> Payment is required in full via available service before I begin the sketching process.<br>
+                <em>Workflow:</em> I will provide a Sketch Preview and a Flat Color Preview for your approval during the process.<br>
+                <em>Revisions:</em> You are entitled to 2 free revisions during the Sketch Phase. Any major anatomical or pose changes requested after the lineart or coloring has started will incur an additional fee ($3+ depending on complexity).</p>
+
+                <p><strong>2. Usage Policy</strong><br>
+                <em>Personal Use:</em> You may use the artwork for social media profiles, wallpapers, personal prints, or as a gift. Please credit me as the artist.<br>
+                <em>Commercial Use:</em> If you intend to use the art for profit (Merchandise, available service branding, etc.), a Commercial Fee will be applied. Please contact me for a custom quote before ordering.<br>
+                <em>Copyright:</em> I retain the right to display the commissioned work in my portfolio or social media for self-promotion. If the character is a "Secret Reveal," please let me know in advance!</p>
+
+                <p><strong>3. Delivery Details</strong><br>
+                <em>Turnaround Time:</em> Standard delivery is 3-7 days per piece. I will notify you immediately if there are any unexpected delays.<br>
+                <em>Files:</em> You will receive a high-resolution PNG file. A (white/transparent) background version is upon request.</p>
+
+                <p><strong>4. Cancellation & Refund Policy</strong><br>
+                <em>Full Refund:</em> Only available if I have NOT started the sketch.<br>
+                <em>Partial Refund (50%):</em> Available if the sketch is finished but coloring has not yet started.<br>
+                <em>No Refund:</em> Once the artwork is finished and delivered, no refunds will be issued.<br>
+                <em>Artist Cancellation:</em> If I am unable to complete your commission for any reason, a 100% refund will be issued regardless of progress.</p>
+            </div>
+        </section>
+    </div>
+
+<script>
+    // 🔥 FIREBASE URL
+    const FIREBASE_URL = 'https://dash-likes-default-rtdb.firebaseio.com';
+    
+    // 🔴 EMAILJS CONFIG - REPLACE THESE!
+    const EMAILJS_SERVICE_ID = 'service_13g4fgo'; // e.g., 'service_abc123'
+    const EMAILJS_TEMPLATE_ID = 'template_gf6b5ly'; // Your template ID
+    const EMAILJS_PUBLIC_KEY = 'kmAiKzR64va6vvC'; // Also update in the <head> section above!
+    
+    // User ID
+    let userId = localStorage.getItem('dash_user_id');
+    if (!userId) {
+        userId = 'user_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('dash_user_id', userId);
+    }
+    
+    // ✅ PERMANENT visitor tracking (localStorage)
+    let visitorCounted = localStorage.getItem('dash_visitor_counted');
+    
+    const syncIndicator = document.getElementById('syncIndicator');
+    
+    function showStatus(msg, isError) {
+        syncIndicator.textContent = msg;
+        syncIndicator.className = 'sync-indicator show' + (isError ? ' error' : '');
+        if (!isError) setTimeout(() => syncIndicator.classList.remove('show'), 2000);
+    }
+    
+    // UPDATE VISITOR COUNT + EMAIL NOTIFICATION (Once per device only)
+    async function updateVisitorCount() {
+        try {
+            // Get current count from Firebase
+            const res = await fetch(`${FIREBASE_URL}/visitors.json`);
+            const current = await res.json();
+            let count = current || 0;
+            
+            // Only increment if not yet counted on this device (permanent)
+            if (!visitorCounted) {
+                count++;
+                
+                // Save to Firebase
+                await fetch(`${FIREBASE_URL}/visitors.json`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(count)
+                });
+                
+                // ✅ SEND EMAIL NOTIFICATION (once per device only)
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                    timestamp: new Date().toLocaleString('en-US', { 
+                        timeZone: 'Asia/Manila',
+                        dateStyle: 'full',
+                        timeStyle: 'long'
+                    }),
+                    device_id: userId,
+                    device_info: navigator.userAgent.substring(0, 50) + '...'
+                }).then(
+                    function(response) {
+                        console.log("Email notification sent!", response.status);
+                    },
+                    function(error) {
+                        console.error("Email failed to send:", error);
+                    }
+                );
+                
+                // Mark as counted permanently in localStorage
+                localStorage.setItem('dash_visitor_counted', 'true');
+                console.log('New device counted and notified:', userId);
+            }
+            
+            // Display global count
+            document.getElementById('visitorCount').textContent = count;
+            
+        } catch (err) {
+            console.error('Visitor count error:', err);
+            document.getElementById('visitorCount').textContent = '?';
+        }
+    }
+    
+    // LOAD LIKES
+    async function loadLikes() {
+        console.log('Loading from Firebase...');
+        showStatus('Loading...');
+        
+        try {
+            const res = await fetch(FIREBASE_URL + '/.json');
+            
+            if (!res.ok) {
+                throw new Error('HTTP ' + res.status);
+            }
+            
+            const data = await res.json();
+            console.log('Data:', data);
+            
+            // Update buttons
+            document.querySelectorAll('.like-btn').forEach(btn => {
+                const id = btn.getAttribute('data-id');
+                let count = 0;
+                let liked = false;
+                
+                if (data && data[id]) {
+                    count = data[id].count || 0;
+                    liked = data[id].users && data[id].users.includes(userId);
+                }
+                
+                btn.querySelector('.like-count').textContent = count;
+                
+                if (liked) {
+                    btn.classList.add('liked');
+                    btn.querySelector('.heart-icon').textContent = '♥';
+                } else {
+                    btn.classList.remove('liked');
+                    btn.querySelector('.heart-icon').textContent = '♡';
+                }
+            });
+            
+            showStatus('Connected');
+            
+        } catch (err) {
+            console.error('Error:', err);
+            showStatus('Error', true);
+        }
+    }
+    
+    // LIKE FUNCTION
+    async function toggleLike(btn, imageId) {
+        if (btn.disabled) return;
+        btn.disabled = true;
+        showStatus('Saving...');
+        
+        const heart = btn.querySelector('.heart-icon');
+        const count = btn.querySelector('.like-count');
+        const isLiked = btn.classList.contains('liked');
+        
+        try {
+            const res = await fetch(`${FIREBASE_URL}/${imageId}.json`);
+            const current = await res.json() || { count: 0, users: [] };
+            
+            let newData;
+            
+            if (!isLiked) {
+                newData = {
+                    count: (current.count || 0) + 1,
+                    users: [...(current.users || []), userId]
+                };
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                newData = {
+                    count: Math.max(0, (current.count || 0) - 1),
+                    users: (current.users || []).filter(u => u !== userId)
+                };
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            
+            count.textContent = newData.count;
+            
+            await fetch(`${FIREBASE_URL}/${imageId}.json`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newData)
+            });
+            
+            showStatus('Saved!');
+            
+        } catch (err) {
+            console.error(err);
+            showStatus('Failed', true);
+        } finally {
+            btn.disabled = false;
+        }
+    }
+    
+    // TAB SWITCH
+    function showTab(tabName, btn) {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        
+        document.getElementById(tabName).classList.add('active');
+        btn.classList.add('active');
+        
+        if (tabName === 'gallery') {
+            loadLikes();
+        }
+    }
+    
+    // INITIALIZE - Run on page load
+    window.addEventListener('load', () => {
+        updateVisitorCount(); // Count visitor and send email if new device
+    });
+</script>
+
+</body>
+</html>
